@@ -29,7 +29,8 @@ def decoder(lista, cinta):
 	estado=0
 	movimiento=["L","R","H"]
 	cabezal=0
-	
+
 #print(expansion("hola", 2))
 
-
+for i in algo:
+	dictionary[i]={"val1":res1, "val2":res2, "val3":res3}

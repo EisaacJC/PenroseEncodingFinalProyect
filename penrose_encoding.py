@@ -7,13 +7,11 @@ def decimal2binary(dec_number):
     input_binary = bin(dec_number).replace("0b", "")
     TM_binary = str('110') + input_binary + str('110')
     return TM_binary
-
 def even_or_odd(number):
     if number % 2 == 0:
         return 0
     else:
         return 1
-
 def Penrose_coding(number):
     output=[]
     binary_number = decimal2binary(number)
@@ -74,6 +72,7 @@ def Penrose_coding(number):
             break
     TM_decode_str = [str(x) for x in (TM_decode)]
     return binary_number, TM_decode_str, fail, output
+    
 def codificacion(n):
     TM_decimal = n
     binn, tmstr, fail, output = Penrose_coding(TM_decimal)
@@ -90,4 +89,4 @@ def codificacion(n):
     with open("universal.txt", 'w') as file:
         file.write(str(fi))
     print(rep)
-print(codificacion(int(input("Enter the Turing Machine number in decimal notation: "))))
+#codificacion(int(input("Enter the Turing Machine number in decimal notation: ")))
