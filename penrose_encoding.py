@@ -90,4 +90,4 @@ def codificacion(n):
     with open("universal.txt", 'w') as file:
         file.write(str(fi))
     print(rep)
-#codificacion(int(input("Enter the Turing Machine number in decimal notation: ")))
+print(codificacion(int(input("Enter the Turing Machine number in decimal notation: "))))
