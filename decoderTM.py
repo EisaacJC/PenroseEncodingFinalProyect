@@ -24,11 +24,6 @@ def expansion(n):
 	n2.append(1)
 	n2.append(0)
 	return n2
-a=pd.read_csv("procesado.csv", header=None)
-a.columns=(["Si","Read","Write","Move","Si+1"])
-idx=(a.index[a["Move"]=="H"])
-a.loc[idx,"Si+1"]="H"
-a.loc[idx,"Move"]="R"
 def run_utm(
         state = None,
         blank = None,
@@ -41,14 +36,15 @@ def run_utm(
     if not tape: tape = [blank]
     if pos < 0: pos += len(tape)
     if pos >= len(tape) or pos < 0: raise "bad init position"
-    
     rules = dict(((str(s0), str(v0)), (str(v1), str(dr), str(s1))) for (s0, v0, v1, dr, s1) in rules)
-    
     while True:
         print(st, '\t', end=" ")
+        #print("Hola")
+        aux=[]
         for i, v in enumerate(tape):
-            if i == pos: print("[%s]" % (v,), end=" ")
-            else: print(v, end=" ")
+            if i == pos: print("[%s]" % (v,), end=" "), aux.append(["[%s]" % v])
+            
+            else: print(v, end=" "), aux.append(["[%s]" % v])
         print()
         if st == halt: break
         if (st, tape[pos]) not in rules: break
@@ -61,10 +57,30 @@ def run_utm(
             pos += 1
             if pos >= len(tape): tape.append(blank) 
         st = s1
-ejecucion=run_utm(
+
+def execution(n):
+	a=pd.read_csv("procesado.csv", header=None)
+	a.columns=(["Si","Read","Write","Move","Si+1"])
+	idx=(a.index[a["Move"]=="H"])
+	a.loc[idx,"Si+1"]="H"
+	a.loc[idx,"Move"]="R"
+	run_utm(
     halt = 'H',
 	state = '0',
 	blank = '0',
-    tape=list(map(str,expansion(4))),
+    tape=list(map(str,expansion(n))),
 	rules = map(tuple,a.round(0).values.tolist()))
-print(ejecucion)
+
+
+#return	cinta
+"""ejecucion=run_utm(
+    halt = 'H',
+	state = '0',
+	blank = '0',
+    tape=list(map(str,expansion(123321))),
+	rules = map(tuple,a.round(0).values.tolist()))"""
+"""a=pd.read_csv("procesado.csv", header=None)
+a.columns=(["Si","Read","Write","Move","Si+1"])
+idx=(a.index[a["Move"]=="H"])
+a.loc[idx,"Si+1"]="H"
+a.loc[idx,"Move"]="R"""
