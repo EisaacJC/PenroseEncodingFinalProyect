@@ -15,8 +15,6 @@ def even_or_odd(number):
 def Penrose_coding(number):
     output=[]
     binary_number = decimal2binary(number)
-    #binary_number="1101010110110100101101010011101001011010111101000011101001010111010001011010100011010010110110101010101101010101101010100110"
-
     TM_list = [int(x) for x in (binary_number)]
     current_state = 0
     count_state = 0
@@ -39,6 +37,7 @@ def Penrose_coding(number):
             if (len(new_state) == 0):
                 new_state.append(0)
                 new_state.append(0)
+            elif (len(new_state)==1): new_state = [0] + new_state
             output.append(str(bin_current_state) + str(bin_new_input) + ' -> '  + ''.join(str(x) for x in new_state) + 'R')
             count_state = count_state + 1
             new_state.clear()
@@ -50,17 +49,20 @@ def Penrose_coding(number):
             if (len(new_state) == 0):
                 new_state.append(0)
                 new_state.append(0)
+            elif (len(new_state)==1): new_state = [0] + new_state
             output.append(str(bin_current_state) + str(bin_new_input) + ' -> ' + ''.join(str(x) for x in new_state) + 'L')
             count_state = count_state + 1
             new_state.clear()
             del TM_list[0:4]
             if (even_or_odd(count_state) == 0):
                 current_state = current_state + 1
+            
         elif (TM_list[0] == 1) & (TM_list[1] == 1) & (TM_list[2] == 1) & (TM_list[3] == 1) & (TM_list[4] == 0) & (len(TM_list) >= 5):
             TM_decode.append('H')
             if (len(new_state) == 0):
                 new_state.append(0)
                 new_state.append(0)
+            elif (len(new_state)==1): new_state = [0] + new_state
             output.append(str(bin_current_state) + str(bin_new_input) + ' -> ' + ''.join(str(x) for x in new_state) + 'H')
             count_state = count_state + 1
             new_state.clear()
@@ -91,5 +93,4 @@ def codificacion(n):
     with open("universal.txt", 'w') as file:
         file.write(str(fi))
     print(rep)
-#print(codificacion(int(input("Enter the Turing Machine number in decimal notation: "))))
-#print(Penrose_coding(True)[3])
+#codificacion(int(input("Enter the Turing Machine number in decimal notation: ")))
