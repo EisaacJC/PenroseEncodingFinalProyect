@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
+
 def decimal2binary(dec_number):
     input_binary = bin(dec_number).replace("0b", "")
     #TM_binary = str('110') + input_binary + str('110')
@@ -25,12 +26,4 @@ def expansion(n):
 	n2.append(0)
 	return n2
 
-def decoder(lista, cinta):
-	estado=0
-	movimiento=["L","R","H"]
-	cabezal=0
-
-#print(expansion("hola", 2))
-
-for i in algo:
-	dictionary[i]={"val1":res1, "val2":res2, "val3":res3}
+pd.read_csv("procesado.csv")

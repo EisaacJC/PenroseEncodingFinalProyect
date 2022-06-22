@@ -15,6 +15,8 @@ def even_or_odd(number):
 def Penrose_coding(number):
     output=[]
     binary_number = decimal2binary(number)
+    #binary_number="1101010110110100101101010011101001011010111101000011101001010111010001011010100011010010110110101010101101010101101010100110"
+
     TM_list = [int(x) for x in (binary_number)]
     current_state = 0
     count_state = 0
@@ -89,4 +91,5 @@ def codificacion(n):
     with open("universal.txt", 'w') as file:
         file.write(str(fi))
     print(rep)
-#codificacion(int(input("Enter the Turing Machine number in decimal notation: ")))
+#print(codificacion(int(input("Enter the Turing Machine number in decimal notation: "))))
+#print(Penrose_coding(True)[3])
