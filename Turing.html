@@ -12,7 +12,7 @@
  <link href="HTMLFiles/Turing.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body style="font-size: Floor[110. Inherited]%;">
+<body style="font-size: Floor[75. Inherited]%;">
 
 <p class="Title">
  Penrose Encoding and graph visualization.
@@ -27,207 +27,391 @@
 
 
 <p class="Subtitle">
- Initializing Cells
+ Introducci&oacute;n:
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>Las M&aacute;quinas de Turing fueron propuestas por el matem&aacute;tico Alan Turing en 1936, son dispositivos computacionales abstractos capaces de simular la l&oacute;gica de cualquier algoritmo, lo cual las convierte en una poderosa herramienta matem&aacute;tica para ayudar a investigar el alcance y las limitaciones de lo que se puede calcular. Desde su propuesta, las Maquinas de Turing han marcado su importancia como el modelo de computaci&oacute;n m&aacute;s utilizado en las ciencias de la computaci&oacute;n y la teor&iacute;a de la complejidad.<br /><br />En t&eacute;rminos generales, las Maquinas de Turing est&aacute;n conformadas por cintas infinitas con representaciones binarias y un diagrama de estados o lista de instrucciones que determinaran el comportamiento de la m&aacute;quina, en cada paso el estado actual y el s&iacute;mbolo le&iacute;do en la cinta determinaran el siguiente estado, el s&iacute;mbolo que se emitir&aacute; en la cinta y la direcci&oacute;n a la cual se mover&aacute; el cabezal (derecha o izquierda).<br /><br />La limitante principal de las Maquinas de Turing es que precisamente, como se mencion&oacute; previamente, simulan un c&aacute;lculo especifico, por lo que para cada nuevo c&aacute;lculo que se quiera simular es necesario construir una maquina diferente, sin embargo, es posible codificar la lista de instrucciones de cualquier m&aacute;quina de Turing en una cadena y construir una m&aacute;quina de Turing que espere en su cinta una cadena que describa una lista de instrucciones, seguida de una cadena que describa la cinta de entrada, y compute la cinta que la M&aacute;quina de Turing codificada habr&iacute;a computado, esta M&aacute;quina de Turing capaz de emular el comportamiento de cualquier otra M&aacute;quina de Turing es conocida como la Maquina de Turing Universal.<br /><br />Si bien la cinta infinita que usan las Maquinas de Turing ya tiene una representaci&oacute;n binaria, es necesaria una codificaci&oacute;n que permita a la maquina distinguir entre espacios, instrucciones, n&uacute;meros, etc. Distintos autores han propuesto sus codificaciones para lidiar con este problema, uno de ellos es Roger Penrose que propone una serie de equivalencias para lograr una codificaci&oacute;n simple y eficiente.<br /><br />En este proyecto se presenta la codificaci&oacute;n de Penrose aplicada a un n&uacute;mero m con notaci&oacute;n decimal que representar&aacute; las instrucciones de la </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_1.png" alt="Turing_1.png" width="10" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>-&eacute;sima M&aacute;quina de Turing, para posteriormente construir el diagrama de estados de dicha M&aacute;quina y el comportamiento que tendr&aacute; dado un n&uacute;mero </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_2.png" alt="Turing_2.png" width="7" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> de entrada.</span>
+</p>
+
+
+
+<p class="Subtitle">
+ Marco Te&oacute;rico:
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>En 1936 y de manera independiente fueron publicados tres art&iacute;culos; &ldquo;</span><span style='font-size: 18px;font-style: italic;'>Finite Combinatory Processes&mdash;Formulation 1</span><span style='font-size: 18px;'>&rdquo; por Emil Post y que da origen a la m&aacute;quina de POST, &ldquo;</span><span style='font-size: 18px;font-style: italic;'>An Unsolvable Problem of Elementary Number Theory</span><span style='font-size: 18px;'>&rdquo; por Alonzo Church el cual formula el c&aacute;lculo </span><span><span><span><img src="HTMLFiles/Turing_3.png" alt="Turing_3.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> y &ldquo;</span><span style='font-size: 18px;font-style: italic;'>On computable numbers, with an application to the Entscheidungsproblem</span><span style='font-size: 18px;'>&rdquo; por Alan Turing que da origen a las m&aacute;quinas de Turing.<br /><br />En </span><span style='font-size: 18px;font-style: italic;'>esencia</span><span style='font-size: 18px;'> la m&aacute;quina de Post publicada por Emil Post y la m&aacute;quina de Turing son equivalentes, de igual manera la m&aacute;quina de Turing y el c&aacute;lculo </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_4.png" alt="Turing_4.png" width="8" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>&nbsp;&nbsp;de Church son equivalentes. <br /><br />La propuesta hecha por Turing es similar a los aut&oacute;matas finitos pero con una memoria ilimitada y sin restricciones. En este sentido la m&aacute;quina de Turing es un modelo de c&oacute;mputo general, las m&aacute;quinas de Turing pueden llevar a cabo las mismas operaciones que una computadora real, sin embargo, esto no implica que todos los problemas puedan ser resueltos por una m&aacute;quina de Turing.<br /><br /><br />Cinco a&ntilde;os antes de que la propuesta de Turing fuese publicada, K. G&ouml;edel (1931) prob&oacute; su teorema de incompletitud, el cual se puede entender como la no existencia de una teor&iacute;a matem&aacute;tica que pueda ser enteramente demostrable, es decir, que sea demostrable a partir de algo que no fuesen supuestos. <br />Formalmente esto se dice seg&uacute;n G&ouml;edel como:<br /><br />&ldquo;Para toda f&oacute;rmula A de la l&oacute;gica cuantificacional de primer orden, si A es l&oacute;gicamente verdadera, entonces A es deducible&rdquo;. Dicho formalmente: &ldquo;Si &#9566; A, entonces &#9500; A&rdquo;<br /><br />Esto est&aacute; intr&iacute;nsecamente relacionado con lo propuesto por Church/Turing, pues en sus trabajos ellos proponen que las m&aacute;quinas de Turing solo son capaces de computar funciones recursivamente numerables.<br /><br />Una m&aacute;quina de Turing consiste de un control finito que puede estar en cualquier estado de un conjunto finito de estados. El modelo propuesto por Turing usa una cinta infinita como m&eacute;todo de almacenamiento (memoria); tiene un cabezal, el cual puede leer, escribir y moverse a lo largo de la cinta.<br /><br />Inicialmente la cinta contiene &uacute;nicamente una cadena de entrada, si la m&aacute;quina necesita guardar informaci&oacute;n escribir&aacute; sobre la cinta. Para poder acceder a la informaci&oacute;n la m&aacute;quina puede mover su cabezal. La m&aacute;quina continua con el proceso de computaci&oacute;n asta que decide producir una salida, las salidas de </span><span style='font-size: 18px;font-style: italic;'>aceptaci&oacute;n</span><span style='font-size: 18px;'> y de </span><span style='font-size: 18px;font-style: italic;'>rechazo</span><span style='font-size: 18px;'> son obtenidas a partir del dise&ntilde;o de los mismos, por otro lado, si no se tiene una opci&oacute;n donde la m&aacute;quina tenga un estado de </span><span style='font-size: 18px;font-style: italic;'>aceptaci&oacute;n</span><span style='font-size: 18px;'> o </span><span style='font-size: 18px;font-style: italic;'>rechazo</span><span style='font-size: 18px;'> la m&aacute;quina seguir&aacute; computando para siempre, es decir sin </span><span style='font-size: 18px;font-style: italic;'>parar</span><span style='font-size: 18px;'>.<br /><br />Algo importante a considerar es las diferencias que presenta con respecto a los aut&oacute;matas finitos.<br /><br />- Una m&aacute;quina de Turing puede escribir sobre la cinta y leer a partir de ella.<br />- El proceso de lecto-escritura puede llevarse a cabo movi&eacute;ndose a la izquierda o a la derecha.<br />- La cinta es infinita.<br />- Los estados de aceptaci&oacute;n o rechazo toman efecto de manera inmediata.<br /><br />Formalmente, una m&aacute;quina de Turing es una 7-tupla </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_5.png" alt="Turing_5.png" width="162" height="21" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> son cojuntos finitos y:<br /><br />- </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_6.png" alt="Turing_6.png" width="10" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> es el conjunto de estados,<br />- </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_7.png" alt="Turing_7.png" width="8" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> es la entrada del alfabeto la cual no contiene a </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_8.png" alt="Turing_8.png" width="10" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br />- </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_9.png" alt="Turing_9.png" width="8" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> es la cinta del alfabeto, donde </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_10.png" alt="Turing_10.png" width="40" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> y </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_11.png" alt="Turing_11.png" width="32" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br />- </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_12.png" alt="Turing_12.png" width="149" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>es la funci&oacute;n de transici&oacute;n,<br />- </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_13.png" alt="Turing_13.png" width="35" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> es el estado inicial,<br />- </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_14.png" alt="Turing_14.png" width="45" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> es el estado de aceptaci&oacute;n, y<br />- </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_15.png" alt="Turing_15.png" width="40" height="21" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> es el estado de rechazo, y en donde se debe cumplir que: </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_16.png" alt="Turing_16.png" width="55" height="21" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>.<br /><br />* Un aspecto importante a considerar es que en general la funci&oacute;n de transici&oacute;n act&uacute;a sobre </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_17.png" alt="Turing_17.png" width="44" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>, sin embargo, puede determinarse que para una m&aacute;quina de Turing que tenga algoritmo soluble en un tiempo finito la funci&oacute;n de transici&oacute;n actuar&aacute; sobre </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_18.png" alt="Turing_18.png" width="66" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> donde </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_19.png" alt="Turing_19.png" width="11" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> denota el valor a partir del cual la m&aacute;quina se detiene, es decir, </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_20.png" alt="Turing_20.png" width="11" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> &ldquo;generar&aacute;&rdquo; estados de la forma </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_21.png" alt="Turing_21.png" width="52" height="21" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>.<br /><br />Pese a que la representaci&oacute;n anterior es sumamente &uacute;til para llevar a cabo el c&oacute;mputo, una representaci&oacute;n alternativa es propuesta por Penrose , en donde, de manera similar a lo descrito anteriormente describe a la m&aacute;quina de Turing como un dispositivo orientado a la realizaci&oacute;n del c&oacute;mputo en general compuesto por una cinta, un cabezal y la transici&oacute;n de derecha a izquierda. En este caso se propone una cinta sobre la cual el cabezal se mover&aacute;, esta estar&aacute; conformada por casillas &ldquo;rellenas&rdquo; de </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_22.png" alt="Turing_22.png" width="43" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>, en este caso el </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_23.png" alt="Turing_23.png" width="8" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> denota una casilla en blanco y el 1 como las casillas no vac&iacute;as. <br /><br />Un aspecto importante a considerar es que los estados que componen a la m&aacute;quina han de ser tales que sean finitos, de manera que el comportamiento de la m&aacute;quina de Turing estar&aacute; completamente determinado por un estado interno y la entrada de la cinta, misma que como se mencion&oacute; previamente est&aacute; compuesta &uacute;nicamente de 0&rsquo;s y 1&rsquo;s.<br /><br />En particular hemos de decir que siempre comenzaremos en el estado 0 y la cinta siempre deber&aacute; moverse a la derecha, esto por las razones expuestas previamente. A partir de aqu&iacute; el comportamiento de la m&aacute;quina de Turing ser&aacute; completamente determinado por las transiciones/reglas que determinan la misma.<br /><br />Es posible asociar un estado de la m&aacute;quina de Turing a un n&uacute;mero natural (Consid&eacute;rese que </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_24.png" alt="Turing_24.png" width="62" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>), bajo esta conversi&oacute;n podemos realizar un mapeo en un sistema num&eacute;rico equivalente. El sistema binario nos servir&aacute; para llevar a cabo la codificaci&oacute;n de los elementos de la cinta, esto es f&aacute;cilmente visible si se toma en cuenta que la codificaci&oacute;n de la cinta est&aacute; compuesta por 0&rsquo;s y 1&rsquo;s. Las razones por las que la cinta est&aacute; codificada en binario en lugar de alg&uacute;n otro sistema como el unario recae en el hecho del tama&ntilde;o de memoria, pese a que para n&uacute;meros peque&ntilde;os el sistema unario es muy eficaz en n&uacute;meros grandes el sistema binario es m&aacute;s compacto.<br /><br />Un aspecto importante a considerar es que en el proceso descrito por Penrose para llevar a cabo la codificaci&oacute;n se considera una &ldquo;variante&rdquo; del binario, la cual es descrita como _binario_ extendido. El procedimiento para convertir una salida de binario a binario extendido es sencillo, se siguen las reglas: &ldquo;,&nbsp;&rarr;&nbsp;110&rdquo;,&nbsp;&ldquo;0&nbsp;&rarr;&nbsp;1&rdquo;,&nbsp;&ldquo;1&rarr;10&rdquo;<br /><br />En la codificaci&oacute;n de Penrose es posible codificar a los estados que componen a una m&aacute;quina de Turing de la siguiente manera:<br /></span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_25.png" alt="Turing_25.png" width="33" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br /></span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_26.png" alt="Turing_26.png" width="40" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br /></span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_27.png" alt="Turing_27.png" width="49" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br /></span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_28.png" alt="Turing_28.png" width="55" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br /></span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_29.png" alt="Turing_29.png" width="99" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br />A este proceso podemos llamarle </span><span style='font-size: 18px;font-style: italic;'>traducci&oacute;n</span><span style='font-size: 18px;'> de la m&aacute;quina de Turing o </span><span style='font-size: 18px;font-style: italic;'>Codificaci&oacute;n de Penrose</span><span style='font-size: 18px;'>, pese a que las razones de esta codificaci&oacute;n no han sido descritas formalmente aqu&iacute; es posible advertir que el resultado de estas nos dar&aacute;n una estructura de grafo, similar a la propuesta inicialmente con la definici&oacute;n formal de m&aacute;quina de Turing.<br /><br />Podemos resumir lo descrito previamente en una serie de pasos:<br /><br />*&nbsp;&nbsp;&nbsp;&nbsp;Consideremos&nbsp;a&nbsp;un&nbsp;conjunto&nbsp;de&nbsp;valores&nbsp;</span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_30.png" alt="Turing_30.png" width="154" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> que representen los estados finitos de la cinta.<br /><br />*&nbsp;&nbsp;&nbsp;&nbsp;Podemos&nbsp;referirnos&nbsp;a&nbsp;los&nbsp;valores&nbsp;como&nbsp;instrucciones/operaciones,&nbsp;en&nbsp;donde&nbsp;la&nbsp;coma&nbsp;solo&nbsp;denota&nbsp;el&nbsp;espacio&nbsp;entre&nbsp;los&nbsp;n&uacute;meros.<br /><br />La&nbsp;codificaci&oacute;n&nbsp;para&nbsp;denotar&nbsp;a&nbsp;los&nbsp;n&uacute;meros&nbsp;se&nbsp;hace&nbsp;en&nbsp;binario&nbsp;considerando&nbsp;que&nbsp;&ldquo;,&rarr;110&rdquo;,0&rarr;1&rdquo;,&nbsp;&ldquo;110&rdquo;,&nbsp;de&nbsp;manera&nbsp;que&nbsp;el&nbsp;proceso&nbsp;de&nbsp;escritura&nbsp;en&nbsp;binario&nbsp;expandido&nbsp;ser&iacute;a&nbsp;mediante&nbsp;la&nbsp;lectura&nbsp;de&nbsp;los&nbsp;valores&nbsp;en&nbsp;binario&nbsp;y&nbsp;mediante&nbsp;el&nbsp;uso&nbsp;de&nbsp;las&nbsp;sustituciones&nbsp;previas.<br /><br />*&nbsp;&nbsp;&nbsp;Una&nbsp;condici&oacute;n&nbsp;importante&nbsp;es&nbsp;que&nbsp;los&nbsp;ceros&nbsp;iniciales&nbsp;a&nbsp;la&nbsp;izquierda&nbsp;son&nbsp;reduntantes,&nbsp;pues&nbsp;no&nbsp;expresan&nbsp;ning&uacute;n&nbsp;valor&nbsp;en&nbsp;la&nbsp;codificaci&oacute;n&nbsp;individual&nbsp;de&nbsp;cada&nbsp;n&uacute;mero.<br /><br />De esta manera es posible expresar a los elementos de la m&aacute;quina de Turing en una codificaci&oacute;n m&aacute;s compacta y legible pues ahora el funcionamiento de una m&aacute;quina de Turing estar&aacute; descrito por un conjunto finito de instrucciones. </span>
+</p>
+
+
+
+<p class="Subsubsection">
+ La m&aacute;quina de Turing Universal.
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>La forma de describir una m&aacute;quina de Turing universal o UTM por sus siglas en ingl&eacute;s es en principio simple, su funcionamiento consiste en traducir una lista de instrucciones de una m&aacute;quina de Turing arbitraria a una cadena de 0&rsquo;s y 1&rsquo;s representadas en una cinta. La cinta es entonces usada como la parte inicial de alguna entrada para alguna m&aacute;quina de Turing, la cual es llamada UTM. La m&aacute;quina de Turing es un mimetizador universal, la parte inicial de la cinta provee a la UTM de toda la informaci&oacute;n que necesita para imitar cualquier m&aacute;quina de Turing </span><span><span><img src="HTMLFiles/Turing_31.png" alt="Turing_31.png" width="11" height="18" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> de manera exacta.<br /><br />Para verificar su funcionamiento es importante tener en claro como se lleva a cabo el proceso sistem&aacute;tico de numeraci&oacute;n de las m&aacute;quinas de Turing. El proceso de decodificaci&oacute;n se hace tomando en cuenta el proceso inverso a la codificaci&oacute;n, considerando una salvedad, la introducci&oacute;n de unos caracteres de inicio y fin, los cuales est&aacute;n determinados por &ldquo;110 &rarr; ,&rdquo; y que se puede considerar &uacute;nicamente como elementos que separan a los n&uacute;meros que deben ser le&iacute;dos. Por consiguiente se adopta la codificaci&oacute;n:<br /> </span><span><span><span><img src="HTMLFiles/Turing_32.png" alt="Turing_32.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> para </span><span><span><span><img src="HTMLFiles/Turing_33.png" alt="Turing_33.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> &oacute; </span><span><span><span><img src="HTMLFiles/Turing_34.png" alt="Turing_34.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br /></span><span><span><span><img src="HTMLFiles/Turing_35.png" alt="Turing_35.png" width="18" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> para 1 &oacute; </span><span><span><span><img src="HTMLFiles/Turing_36.png" alt="Turing_36.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br /></span><span><span><span><img src="HTMLFiles/Turing_37.png" alt="Turing_37.png" width="24" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> para </span><span><span><span><img src="HTMLFiles/Turing_38.png" alt="Turing_38.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br /></span><span><span><span><img src="HTMLFiles/Turing_39.png" alt="Turing_39.png" width="31" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> para </span><span><span><span><img src="HTMLFiles/Turing_40.png" alt="Turing_40.png" width="7" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>,<br /></span><span><span><span><img src="HTMLFiles/Turing_41.png" alt="Turing_41.png" width="39" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> para</span><span><span><span><img src="HTMLFiles/Turing_42.png" alt="Turing_42.png" width="55" height="16" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'><br />Bajo este procedimiento es posible etiquetar a las m&aacute;quinas de Turing, en particular las primeras 13 son:<br /></span>
+</p>
+
+
+
+<p class='Subsection' style='text-align: center;'>
+ <img src="HTMLFiles/Turing_43.gif" alt="Turing_43.gif" width="1032" height="495" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 18px;'>Ahora, es posible considerar la acci&oacute;n de una m&aacute;quina de Turing </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_44.png" alt="Turing_44.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> en alguna cadena finita de 0&rsquo;s y 1&rsquo;s sobre una cinta la cual siempre alimentemos a la derecha, misma que como se discuti&oacute; previamente debe estar codificada en binario extendido. Si la cinta generada de la m&aacute;quina </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_45.png" alt="Turing_45.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> eventualmente se detiene la cadena de n&uacute;meros binarios que se ha producido es la respuesta al c&aacute;lculo que realiza la m&aacute;quina de Turing </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_46.png" alt="Turing_46.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>, dicho de otra manera:<br /><br />Una cinta de instrucciones finitas con paro conduce a la computaci&oacute;n de la m&aacute;quina de Turing </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_47.png" alt="Turing_47.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> sobre alg&uacute;n valor num&eacute;rico, es decir: </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_48.png" alt="Turing_48.png" width="55" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>. <br />En resumen,la m&aacute;quina </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_49.png" alt="Turing_49.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> ser&aacute; codificada en una cinta que recibir&aacute; como entrada un n&uacute;mero m y tendr&aacute; como salida un n&uacute;mero </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_50.png" alt="Turing_50.png" width="7" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>.<br />Por ejemplo, consid&eacute;rese el caso en donde </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_51.png" alt="Turing_51.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> es la m&aacute;quina de Turing que calcula el valor del cuadrado de un n&uacute;mero, se tendr&aacute; que</span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_52.png" alt="Turing_52.png" width="57" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>con </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_53.png" alt="Turing_53.png" width="38" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>.<br /><br />En particular en este trabajo se implementar&aacute;n las m&aacute;quinas de Turing </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_54.png" alt="Turing_54.png" width="41" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> y la m&aacute;quina de Turing </span><span style='font-size: 18px;'><span> <span><img src="HTMLFiles/Turing_55.png" alt="Turing_55.png" width="45" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> las cuales corresponden en la codificaci&oacute;n de n&uacute;meros naturales a la m&aacute;quinas </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_56.png" alt="Turing_56.png" width="292" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> y </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_57.png" alt="Turing_57.png" width="89" height="19" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> respectivamente.<br /><br />En general, la m&aacute;quina de Turing Universal se puede escribir formalmente como:<br /></span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_58.png" alt="Turing_58.png" width="93" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> es decir, la m&aacute;quina de Turing es una m&aacute;quina que recibe dos entradas, </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_59.png" alt="Turing_59.png" width="7" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> que corresponde al n&uacute;mero de la m&aacute;quina de Turing por mimetizar y </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_60.png" alt="Turing_60.png" width="10" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'>, el n&uacute;mero sobre el cual la m&aacute;quina de Turing </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_61.png" alt="Turing_61.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'> debe computar.<br />Sin embargo, como se ha descrito previamente la m&aacute;quina de Turing universal es un mimetizador universal, la pregunta es, &iquest;existe una m&aacute;quina de Turing que mimetice el comportamiento de la m&aacute;quina universal?, la respuesta es s&iacute; el n&uacute;mero </span><span style='font-size: 18px;'><span><span><img src="HTMLFiles/Turing_62.png" alt="Turing_62.png" width="7" height="17" style="vertical-align:middle" /></span></span></span><span style='font-size: 18px;'> que genera la m&aacute;quina </span><span style='font-size: 18px;'><span><img src="HTMLFiles/Turing_63.png" alt="Turing_63.png" width="13" height="20" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'>.</span><br />
+</p>
+
+
+
+<p class="Subsection">
+ Metodolog&iacute;a
+</p>
+
+
+
+<p class="Subtitle">
+ Penrose codification
+</p>
+
+
+
+<p class="Text">
+ Para obtener la codificaci&oacute;n de Penrose se escribi&oacute; un&nbsp;&nbsp;programa en python que genera un archivo&nbsp;&nbsp;csv con los elementos necesarios para generar nuestras m&aacute;quinas de Turing. El algoritmo recibe como entrada un n&uacute;mero entero <span style='font-style: italic;'>m</span>&nbsp;&nbsp;y devuelve como salida la lista de instrucciones necesarias para aplicar la m&aacute;quina a un n&uacute;mero <span style='font-style: italic;'>n</span>.<br /><br />Con este prop&oacute;sito se definen dos funciones auxiliares con el prop&oacute;sito de convertir a m en un n&uacute;mero binario.&nbsp;&nbsp;
+</p>
+
+
+
+<p class="Text">
+ <span style='font-family: Courier New;font-style: italic;'>def decimal2binary(dec_number):<br />&nbsp;&nbsp;&nbsp;&nbsp;input_binary = bin(dec_number).replace(&ldquo;0b&rdquo;, &ldquo;&rdquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;TM_binary = str(&lsquo;110&rsquo;) + input_binary + str(&lsquo;110&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;return TM_binary<br />def even_or_odd(number):<br />&nbsp;&nbsp;&nbsp;&nbsp;if number % 2 == 0:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0<br />&nbsp;&nbsp;&nbsp;&nbsp;else:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 1</span>
+</p>
+
+
+
+<p class="Text">
+ Finalmente, se crea la funci&oacute;n principal, en ella se aplica sistem&aacute;ticamente las equivalencias propuestas por Penrose para generar la codificaci&oacute;n correspondiente as&iacute; como las instrucciones implicadas. 
+</p>
+
+
+
+<p class='Text' style='background-color: #FFFFFF;'>
+ <span style='font-family: Courier New;color: #000000;background-color: #FFFFFF;'>def Penrose_coding(number):<br />&nbsp;&nbsp;&nbsp;&nbsp;output=[]<br />&nbsp;&nbsp;&nbsp;&nbsp;binary_number = decimal2binary(number)<br />&nbsp;&nbsp;&nbsp;&nbsp;TM_list = [int(x) for x in (binary_number)]<br />&nbsp;&nbsp;&nbsp;&nbsp;current_state = 0<br />&nbsp;&nbsp;&nbsp;&nbsp;count_state = 0<br />&nbsp;&nbsp;&nbsp;&nbsp;new_state = []<br />&nbsp;&nbsp;&nbsp;&nbsp;TM_decode = []<br />&nbsp;&nbsp;&nbsp;&nbsp;fail = False<br />&nbsp;&nbsp;&nbsp;&nbsp;while len(TM_list)!=0:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bin_current_state =bin(current_state).replace(&ldquo;0b&rdquo;,&rdquo;&rdquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bin_new_input = even_or_odd(count_state)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (TM_list[0] == 0) &amp; (len(TM_list) &gt;= 1):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TM_decode.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del TM_list[0]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (TM_list[0] == 1) &amp; (TM_list[1] == 0) &amp; (len(TM_list) &gt;= 2):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TM_decode.append(1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del TM_list[0:2]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (TM_list[0] == 1) &amp; (TM_list[1] == 1) &amp; (TM_list[2] == 0) &amp; (len(TM_list) &gt;= 3):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TM_decode.append(&lsquo;R&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (len(new_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (len(new_state)==1): new_state = [0] + new_state<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output.append(str(bin_current_state) + str(bin_new_input) + &lsquo; -&gt; &lsquo;&nbsp;&nbsp;+ &lsquo;&rsquo;.join(str(x) for x in new_state) + &lsquo;R&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count_state = count_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.clear()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del TM_list[0:3]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (even_or_odd(count_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current_state = current_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (TM_list[0] == 1) &amp; (TM_list[1] == 1) &amp; (TM_list[2] == 1) &amp; (TM_list[3] == 0) &amp; (len(TM_list) &gt;= 4):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TM_decode.append(&lsquo;L&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (len(new_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (len(new_state)==1): new_state = [0] + new_state<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output.append(str(bin_current_state) + str(bin_new_input) + &lsquo; -&gt; &lsquo; + &lsquo;&rsquo;.join(str(x) for x in new_state) + &lsquo;L&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count_state = count_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.clear()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del TM_list[0:4]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (even_or_odd(count_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current_state = current_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (TM_list[0] == 1) &amp; (TM_list[1] == 1) &amp; (TM_list[2] == 1) &amp; (TM_list[3] == 1) &amp; (TM_list[4] == 0) &amp; (len(TM_list) &gt;= 5):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TM_decode.append(&lsquo;H&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (len(new_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.append(0)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif (len(new_state)==1): new_state = [0] + new_state<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output.append(str(bin_current_state) + str(bin_new_input) + &lsquo; -&gt; &lsquo; + &lsquo;&rsquo;.join(str(x) for x in new_state) + &lsquo;H&rsquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count_state = count_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_state.clear()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del TM_list[0:5]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (even_or_odd(count_state) == 0):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current_state = current_state + 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fail = True<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a=str(bin_current_state) + str(bin_new_input) + &lsquo; -&gt; &lsquo; + &lsquo;&rsquo;.join(str(x) for x in new_state) + &lsquo;?&rsquo;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output.append(a)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br />&nbsp;&nbsp;&nbsp;&nbsp;TM_decode_str = [str(x) for x in (TM_decode)]<br />&nbsp;&nbsp;&nbsp;&nbsp;return binary_number, TM_decode_str, fail, output</span>
+</p>
+
+
+
+<p class="Text">
+ <span style='font-family: Courier New;font-style: italic;'></span>
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 12px;font-family: Courier New;font-style: italic;'></span>
+</p>
+
+
+
+<p class="Section">
+ Resultados-1: Grafos y listas de instrucciones de la m&aacute;quina de Turing Universal, la m&aacute;quina de Turing XN+1 y la m&aacute;quina de Turing XN*2
+</p>
+
+
+
+<p class="Subsubsection">
+ Grafo de la m&aacute;quina universal de Turing.
+</p>
+
+
+
+<p class="Text">
+ <span style='text-align: center;'><span><img src="HTMLFiles/Turing_64.gif" alt="Turing_64.gif" width="1018" height="1051" style="vertical-align:middle" /></span></span><span class="InputInline"><span><img src="HTMLFiles/Turing_65.gif" alt="Turing_65.gif" width="273" height="363" style="vertical-align:middle" /></span></span>
+</p>
+
+
+
+<p class="Subsubsection">
+ Grafo de la m&aacute;quina XN+1
+</p>
+
+
+
+<p class='Input' style='text-align: center;'>
+ <img src="HTMLFiles/Turing_66.gif" alt="Turing_66.gif" width="1006" height="428" style="vertical-align:middle" />
+</p>
+
+<p class="Subsubsection">
+ Grafo de la m&aacute;quina XN*2
+</p>
+
+
+
+<p class='Input' style='text-align: center;'>
+ <img src="HTMLFiles/Turing_67.gif" alt="Turing_67.gif" width="839" height="529" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ Resultados-2: Pruebas de ejecuci&oacute;n de la m&aacute;quina de Turing XN+1 y XN*2 a partir de la m&aacute;quina de Turing Universal.
+</p>
+
+
+
+<p class="Subsubsection">
+ Ejecuci&oacute;n de la m&aacute;quina de Turing XN+1 para la entrada <span><span><img src="HTMLFiles/Turing_68.png" alt="Turing_68.png" width="102" height="21" style="vertical-align:middle" /></span></span> para m=2
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>El resultado de la m&aacute;quina de Turing es la &uacute;ltima l&iacute;nea mostrada a la derecha, esta se encuentra en la codificaci&oacute;n del binario extendido, se muestra a la derecha el resultado de la decodificaci&oacute;n mostrando el resultado correcto, correspondiente a 3.</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Turing_69.gif" alt="Turing_69.gif" width="788" height="367" style="vertical-align:middle" />
+</p>
+
+<p class="Subsubsection">
+ Ejecuci&oacute;n de la m&aacute;quina de Turing XN*2 para la entrada <span><span><img src="HTMLFiles/Turing_70.png" alt="Turing_70.png" width="104" height="21" style="vertical-align:middle" /></span></span> para m=3
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>El resultado de la m&aacute;quina de Turing es la &uacute;ltima l&iacute;nea mostrada a la derecha, esta se encuentra en la codificaci&oacute;n del binario extendido, se muestra a la derecha el resultado de la decodificaci&oacute;n mostrando el resultado correcto, correspondiente a 6.</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Turing_71.gif" alt="Turing_71.gif" width="1030" height="418" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ Conclusiones:
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>En este proyecto se present&oacute; un programa que muestra visualmente el funcionamiento de las M&aacute;quinas de Turing y la codificaci&oacute;n de Penrose con su equivalente diagrama de estados. Se puede ver claramente que en el caso de las M&aacute;quinas de Turing XN+1 y XN*2 que fueron las pruebas ejecutadas, los resultados obtenidos fueron correctos al adicionar o multiplicar las entradas dadas a cada m&aacute;quina, de igual manera esto se debi&oacute; a la correcta implementaci&oacute;n de la codificaci&oacute;n de Penrose en la cinta.</span><br />
+</p>
+
+
+
+<p class="Section">
+ Ejecuci&oacute;n de la libreta:
+</p>
+
+
+
+<p class="Subtitle">
+ Celdas de inicializaci&oacute;n
 </p>
 
 
 
 <p class='Input' style='background-color: #F0E8E0;'>
- <img src="HTMLFiles/Turing_1.png" alt="Turing_1.png" width="309" height="171" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_72.png" alt="Turing_72.png" width="217" height="117" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Turing_73.png" alt="Turing_73.png" width="1045" height="57" style="vertical-align:middle;" usemap="#map_73" />
+<map name="map_73">
+<area shape="rect" coords="967,40,976,26" title="Annotation[C:\Program Files\Python39\python.exe, TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[d82d72f3-5b23-4faf-b85d-584cb7cbeb82][{Key[25154200-cab0-c29d-1b2b-53bf611f4629], Key[Executable]}, Item, False], Mouse]" nohref="" />
+<area shape="rect" coords="967,19,976,5" title="Annotation[EventHandler[MouseAppearance[Mouseover[Executable, Executable], LinkHand], {MouseClicked, 1} :> If[TypeSystem`NestedGrid`PackagePrivate`checkInteractivity[TypeSystem`NestedGrid`PackagePrivate`$state$$], TypeSystem`NestedGrid`PackagePrivate`updateState[TypeSystem`NestedGrid`PackagePrivate`$state$$, TypeSystem`NestedGrid`PackagePrivate`$path$$, TypeSystem`NestedGrid`PackagePrivate`$vPos$$, TypeSystem`NestedGrid`PackagePrivate`$hPos$$, TypeSystem`NestedGrid`PackagePrivate`$grid$$, TypeSystem`NestedGrid`PackagePrivate`localHold[TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{All, Executable}, 1]]], TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[d82d72f3-5b23-4faf-b85d-584cb7cbeb82][{All, Executable}, ColumnHeader, True], Mouse]" nohref="" />
+</map>
 </p>
 
 <p class="Subtitle">
- Execution of the python code for the penrose Encoding.
+ Ejecuci&oacute;n del c&oacute;digo de python para la codificaci&oacute;n de Penrose.
 </p>
 
 
 
 <p class="Input">
- <img src="HTMLFiles/Turing_2.gif" alt="Turing_2.gif" width="463" height="198" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_74.gif" alt="Turing_74.gif" width="316" height="135" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_75.png" alt="Turing_75.png" width="213" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_76.png" alt="Turing_76.png" width="109" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_77.png" alt="Turing_77.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_78.png" alt="Turing_78.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_79.png" alt="Turing_79.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_80.png" alt="Turing_80.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_81.png" alt="Turing_81.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_82.png" alt="Turing_82.png" width="110" height="12" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Turing_83.png" alt="Turing_83.png" width="110" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Subtitle">
- Pre-processing rules for the instructions that came from Penrose Encoding
+ Pre procesamiento de las reglas para la construcci&oacute;n de la codificaci&oacute;n de Penrose.
 </p>
 
 
 
 <p class="Input">
- <img src="HTMLFiles/Turing_3.png" alt="Turing_3.png" width="222" height="33" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_84.png" alt="Turing_84.png" width="152" height="23" style="vertical-align:middle" />
 </p>
 
 <p class="Input">
- <img src="HTMLFiles/Turing_4.png" alt="Turing_4.png" width="549" height="33" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_85.png" alt="Turing_85.png" width="373" height="23" style="vertical-align:middle" />
 </p>
 
 <p class="Subtitle">
- Visualization using Multigraph2 with modified elements (originally taken from: https://mathematica.stackexchange.com/questions/201183/how-to-get-distinct-labels-on-parallel-edges-in-a-graph)
+ Visualizaci&oacute;n usando Multigraph2 con elementos modificados, originalmente fue modificado a partir de:(https://mathematica.stackexchange.com/questions/201183/how-to-get-distinct-labels-on-parallel-edges-in-a-graph)
 </p>
 
 
 
 <p class="Subsection">
- MultiGraph2 implementation: A tool to visualize correctly multilabel graphs on Wolfram Mathematica
+ Integraci&oacute;n de MultiGraph2 implementation: Una herramienta para visualizar grafos en Wolfram Mathematica (de manera default no se pueden construir gr&aacute;ficos con m&uacute;ltiples etiquetas).
 </p>
 
 
 
 <p class='Input' style='color: #800080;background-color: #E0FFE0;'>
- <img src="HTMLFiles/Turing_5.gif" alt="Turing_5.gif" width="1851" height="250" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_86.gif" alt="Turing_86.gif" width="1636" height="104" style="vertical-align:middle" />
 </p>
 
 <p class="Subsection">
- Table generation for associations in the graph in order to be functional with multigraph2
+ Generaci&oacute;n de la tabla de asociaciones para modificar el conjunto para usar multigraph2
 </p>
 
 
 
 <p class='Input' style='background-color: #FFE6CC;'>
- <img src="HTMLFiles/Turing_6.png" alt="Turing_6.png" width="913" height="189" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_87.png" alt="Turing_87.png" width="1026" height="90" style="vertical-align:middle" />
 </p>
 
 <p class="Subsection">
- Visualization of the graph using Gravity Embedding, a method to visualize more clearly the graph.
+ Visualizaci&oacute;n de los gr&aacute;ficos usando el enredado de <span style='font-style: italic;'>Gravity</span>, un m&eacute;todo para visualizar m&aacute;s claramente el grafo.
 </p>
 
 
 
 <p class='Input' style='background-color: #FFD9D9;'>
- <img src="HTMLFiles/Turing_7.gif" alt="Turing_7.gif" width="1829" height="72" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_88.gif" alt="Turing_88.gif" width="1243" height="50" style="vertical-align:middle" />
 </p>
 
 <p class="Output">
- <img src="HTMLFiles/Turing_8.gif" alt="Turing_8.gif" width="588" height="792" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_89.gif" alt="Turing_89.gif" width="432" height="504" style="vertical-align:middle" />
 </p>
 
 <p class="Subsubsection">
- Image List for the first 12 Turing Machines
+ Im&aacute;genes para las primeras 12 m&aacute;quinas de Turing
 </p>
 
 
 
 <p class="Subsubsection">
- Visualization of first 12 TM
+ Visualizaci&oacute;n de las primeras 12 m&aacute;quinas de Turing
 </p>
 
 
 
 <p class="Input">
- <img src="HTMLFiles/Turing_9.png" alt="Turing_9.png" width="182" height="33" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_90.png" alt="Turing_90.png" width="124" height="23" style="vertical-align:middle" />
 </p>
 
 <p class="Output">
- <img src="HTMLFiles/Turing_10.gif" alt="Turing_10.gif" width="567" height="413" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_91.gif" alt="Turing_91.gif" width="846" height="615" style="vertical-align:middle" />
 </p>
 
 <p class="Subtitle">
- Pre processing of the data in order to compile this in the UTM program for python
+ Pre procesamiento de los datos con el motivo de ejecutar la compilaci&oacute;n de la m&aacute;quina universal de Turing, implementado en Python 3.
 </p>
 
 
 
 <p class='Input' style='background-color: #DEF0FF;'>
- <img src="HTMLFiles/Turing_11.gif" alt="Turing_11.gif" width="930" height="287" style="vertical-align:middle" />
-</p>
-
-<p class="Output">
- <img src="HTMLFiles/Turing_12.png" alt="Turing_12.png" width="102" height="17" style="vertical-align:middle" />
-</p>
-
-<p class="Input">
- <img src="HTMLFiles/Turing_13.png" alt="Turing_13.png" width="4" height="17" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_92.gif" alt="Turing_92.gif" width="636" height="196" style="vertical-align:middle" />
 </p>
 
 <p class="Subtitle">
- Execution of the TM (Don&rsquo;t execute this if the Machine has no halt, this would leead to an &ldquo;infinite&rdquo; execution)
+ Ejecuci&oacute;n de la m&aacute;quina de Turing: Solo ejecutar si se sabe que la m&aacute;quina eventualmente se detiene.
 </p>
 
 
 
 <p class="Subsection">
- In order to execute the decoder for the UTM we need to introduce a number to execute <span><span><img src="HTMLFiles/Turing_14.png" alt="Turing_14.png" width="136" height="31" style="vertical-align:middle" /></span></span>
+ <span><span><img src="HTMLFiles/Turing_93.png" alt="Turing_93.png" width="94" height="22" style="vertical-align:middle" /></span></span>
 </p>
 
 
 
 <p class="Input">
- <img src="HTMLFiles/Turing_15.gif" alt="Turing_15.gif" width="408" height="95" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_94.gif" alt="Turing_94.gif" width="279" height="65" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_16.png" alt="Turing_16.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_95.png" alt="Turing_95.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_17.png" alt="Turing_17.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_96.png" alt="Turing_96.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_18.png" alt="Turing_18.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_97.png" alt="Turing_97.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_19.png" alt="Turing_19.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_98.png" alt="Turing_98.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_20.png" alt="Turing_20.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_99.png" alt="Turing_99.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_21.png" alt="Turing_21.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_100.png" alt="Turing_100.png" width="125" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_22.png" alt="Turing_22.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_101.png" alt="Turing_101.png" width="130" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_23.png" alt="Turing_23.png" width="328" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_102.png" alt="Turing_102.png" width="140" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Print">
- <img src="HTMLFiles/Turing_24.png" alt="Turing_24.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_25.png" alt="Turing_25.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_26.png" alt="Turing_26.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_27.png" alt="Turing_27.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_28.png" alt="Turing_28.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_29.png" alt="Turing_29.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_30.png" alt="Turing_30.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_31.png" alt="Turing_31.png" width="328" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_32.png" alt="Turing_32.png" width="336" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_33.png" alt="Turing_33.png" width="350" height="15" style="vertical-align:middle" />
-</p>
-
-<p class="Print">
- <img src="HTMLFiles/Turing_34.png" alt="Turing_34.png" width="357" height="15" style="vertical-align:middle" />
+ <img src="HTMLFiles/Turing_103.png" alt="Turing_103.png" width="145" height="12" style="vertical-align:middle" />
 </p>
 
 <p class="Subsection">
@@ -235,6 +419,125 @@
 </p>
 
 
+
+<p class="Input">
+ <img src="HTMLFiles/Turing_104.png" alt="Turing_104.png" width="181" height="141" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Turing_105.png" alt="Turing_105.png" width="334" height="23" style="vertical-align:middle" />
+</p>
+
+<table class='Output'>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_106.gif" alt="Turing_106.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_107.gif" alt="Turing_107.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_108.gif" alt="Turing_108.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_109.gif" alt="Turing_109.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_110.gif" alt="Turing_110.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_111.gif" alt="Turing_111.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_112.gif" alt="Turing_112.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_113.gif" alt="Turing_113.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_114.gif" alt="Turing_114.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_115.gif" alt="Turing_115.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_116.gif" alt="Turing_116.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_117.gif" alt="Turing_117.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_118.gif" alt="Turing_118.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_119.gif" alt="Turing_119.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_120.gif" alt="Turing_120.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_121.gif" alt="Turing_121.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_122.gif" alt="Turing_122.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_123.gif" alt="Turing_123.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_124.gif" alt="Turing_124.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_125.gif" alt="Turing_125.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_126.gif" alt="Turing_126.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_127.gif" alt="Turing_127.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_128.gif" alt="Turing_128.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_129.gif" alt="Turing_129.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_130.gif" alt="Turing_130.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_131.gif" alt="Turing_131.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_132.gif" alt="Turing_132.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_133.gif" alt="Turing_133.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_134.gif" alt="Turing_134.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_135.gif" alt="Turing_135.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_136.gif" alt="Turing_136.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_137.gif" alt="Turing_137.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_138.gif" alt="Turing_138.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_139.gif" alt="Turing_139.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_140.gif" alt="Turing_140.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_141.gif" alt="Turing_141.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_142.gif" alt="Turing_142.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_143.gif" alt="Turing_143.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_144.gif" alt="Turing_144.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_145.gif" alt="Turing_145.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_146.gif" alt="Turing_146.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_147.gif" alt="Turing_147.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_148.gif" alt="Turing_148.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_149.gif" alt="Turing_149.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_150.gif" alt="Turing_150.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_151.gif" alt="Turing_151.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_152.gif" alt="Turing_152.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_153.gif" alt="Turing_153.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_154.gif" alt="Turing_154.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_155.gif" alt="Turing_155.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_156.gif" alt="Turing_156.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_157.gif" alt="Turing_157.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_158.gif" alt="Turing_158.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_159.gif" alt="Turing_159.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_160.gif" alt="Turing_160.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_161.gif" alt="Turing_161.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_162.gif" alt="Turing_162.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_163.gif" alt="Turing_163.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_164.gif" alt="Turing_164.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_165.gif" alt="Turing_165.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_166.gif" alt="Turing_166.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_167.gif" alt="Turing_167.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_168.gif" alt="Turing_168.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_169.gif" alt="Turing_169.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_170.gif" alt="Turing_170.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span></span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_171.gif" alt="Turing_171.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_172.gif" alt="Turing_172.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_173.gif" alt="Turing_173.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_174.gif" alt="Turing_174.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_175.gif" alt="Turing_175.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_176.gif" alt="Turing_176.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_177.gif" alt="Turing_177.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_178.gif" alt="Turing_178.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_179.gif" alt="Turing_179.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+  <td style='text-align: center;'><span><span><img src="HTMLFiles/Turing_180.gif" alt="Turing_180.gif" width="9" height="13" style="vertical-align:middle" /></span></span></td>
+ </tr>
+</table>
 
 
 
