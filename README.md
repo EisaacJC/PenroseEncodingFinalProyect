@@ -93,25 +93,9 @@ Para verificar su funcionamiento es importante tener en claro como se lleva a ca
 $\quad10$ para 1 ó $1$,
 $\quad 110$ para $R$,
 $\quad1110$ para $L$,
-$\quad 11110$ para STOP/H
+$\quad 11110$ para STOP/H$
 Bajo este procedimiento es posible etiquetar a las máquinas de Turing, en particular las primeras 13 son:
-$
-\begin{aligned}
-&T_{0}: \quad 00 \rightarrow 0 \mathrm{OR}, \quad 01 \rightarrow 0 \mathrm{OR}\\
-&T_{1}: \quad 00 \rightarrow 00 R, \quad 0 1 \rightarrow 00 L\\
-&T_{2}: \quad 00 \rightarrow 0 O R, \quad 0 1 \rightarrow 01 R \text {, }\\
-&T_{3}: \quad 00 \rightarrow 0 \text { OR, } \quad 01 \rightarrow 0 \text { OSTOP, }\\
-&T_{4}: \quad 00 \rightarrow 0 O R, \quad 0 1 \rightarrow 10 R \text {, }\\
-&T_{5}: \quad 00 \rightarrow 0 O R, \quad 01 \rightarrow 01 \mathrm{~L} \text {, }\\
-&T_{6:} \quad 00 \rightarrow 0 O R, \quad 0 1 \rightarrow 0 O R, \quad 10 \rightarrow 0 O R \text {, }\\
-&T_{7:} \quad 00 \rightarrow 0 O R, \quad 0 1 \rightarrow \text { ???, }\\
-&T_{8}: \quad 00 \rightarrow 0 O R, \quad 01 \rightarrow 100 R \text {, }\\
-&T_{9:} \quad 00 \rightarrow 0 \mathrm{OR}, \quad 01 \rightarrow 10 \mathrm{~L},\\
-&T_{10}: \quad 00 \rightarrow 0 \mathrm{OR}, \quad 01 \rightarrow 11 \mathrm{R} \text {, }\\
-&T_{11}: \quad 00 \rightarrow 0 \text { OR, } \quad 01 \rightarrow 0 \text { 1STOP, }\\
-&T_{12}: \quad 00 \rightarrow 00 R, \quad 0 1 \rightarrow 0 O R, \quad 10 \rightarrow 0 O R .
-\end{aligned}
-$
+![image](https://user-images.githubusercontent.com/10681481/176983911-0bd7cf83-ce54-46b2-aebd-f83426e006c9.png)
 Ahora, es posible considerar la acción de una máquina de Turing $T_n$ en alguna cadena finita de 0's y 1's sobre una cinta la cual siempre alimentemos a la derecha, misma que como se discutió previamente debe estar codificada en binario extendido. Si la cinta generada de la máquina $T_n$ eventualmente se detiene la cadena de números binarios que se ha producido es la respuesta al cálculo que realiza la máquina de Turing $T_n$, dicho de otra manera:
 
 > Una cinta de instrucciones finitas con paro conduce a la computación de la máquina de Turing $T_n$ sobre algún valor numérico, es decir: $T_n(m)=p$.
