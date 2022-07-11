@@ -44,7 +44,7 @@ Formalmente, una máquina de Turing es una 7-tupla $M=(Q, \Sigma, \Gamma, \delta
 
 - $Q$ es el conjunto de estados,
 - $\Sigma$ es la entrada del alfabeto la cual no contiene a $\sqcup$,
-- $\Gamma$ es la cinta del alfabeto, donde $\sqcup \in \mathrm{I}$ y $\Sigma \subseteq \mathrm{I}$,
+- $\Gamma$ es la cinta del alfabeto, donde $\sqcup \in \mathrm{I} $ y $ \Sigma \subseteq \mathrm{I}$,
 - $\delta: Q \times \Gamma \longrightarrow Q \times \Gamma \times\{\mathrm{L}, \mathrm{R}\}$ es la función de transición,
 - $q_{0} \in Q$ es el estado inicial,
 - $q_{\text {acc }} \in Q$ es el estado de aceptación, and
